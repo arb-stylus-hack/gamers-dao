@@ -26,7 +26,7 @@ export const AchievementCard = ({ achievement, onClaim, loading }: AchievementCa
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full bg-base-300 flex items-center justify-center">
             {/* In production, replace with actual achievement badge image */}
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl">{achievement.imageUrl}</span>
           </div>
           <div>
             <h2 className="card-title">{achievement.name}</h2>

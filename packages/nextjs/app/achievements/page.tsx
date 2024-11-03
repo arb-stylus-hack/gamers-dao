@@ -16,7 +16,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Common",
-    imageUrl: "/achievements/first-blood.png",
+    imageUrl: "🩸",
     category: "General",
   },
   {
@@ -27,7 +27,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 2,
     badgeType: "Achievement",
     rarity: "Rare",
-    imageUrl: "/achievements/fortnite.png",
+    imageUrl: "🏰",
     category: "Fortnite",
   },
   {
@@ -38,7 +38,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 1,
     badgeType: "Achievement",
     rarity: "Epic",
-    imageUrl: "/achievements/social.png",
+    imageUrl: "👥",
     category: "Platform",
   },
   {
@@ -49,7 +49,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Rare",
-    imageUrl: "/achievements/stream.png",
+    imageUrl: "🎥",
     category: "Platform",
   },
   {
@@ -60,7 +60,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Epic",
-    imageUrl: "/achievements/lol.png",
+    imageUrl: "🌟",
     category: "League of Legends",
   },
   {
@@ -71,7 +71,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Legendary",
-    imageUrl: "/achievements/tournament.png",
+    imageUrl: "🏆",
     category: "Platform",
   },
   {
@@ -82,7 +82,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 18,
     badgeType: "Achievement",
     rarity: "Rare",
-    imageUrl: "/achievements/csgo.png",
+    imageUrl: "🔫",
     category: "CS:GO",
   },
   {
@@ -93,7 +93,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 12,
     badgeType: "Achievement",
     rarity: "Epic",
-    imageUrl: "/achievements/community.png",
+    imageUrl: "✅",
     category: "Platform",
   },
   {
@@ -104,7 +104,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 2,
     badgeType: "Achievement",
     rarity: "Epic",
-    imageUrl: "/achievements/apex.png",
+    imageUrl: "🎖️",
     category: "Apex Legends",
   },
   {
@@ -115,7 +115,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 1,
     badgeType: "Achievement",
     rarity: "Legendary",
-    imageUrl: "/achievements/early.png",
+    imageUrl: "🦄",
     category: "Platform",
   },
   {
@@ -126,7 +126,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Epic",
-    imageUrl: "/achievements/valorant.png",
+    imageUrl: "💥",
     category: "Valorant",
   },
   {
@@ -137,7 +137,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 45,
     badgeType: "Achievement",
     rarity: "Rare",
-    imageUrl: "/achievements/wager.png",
+    imageUrl: "🐳",
     category: "Platform",
   },
   {
@@ -148,7 +148,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 3,
     badgeType: "Achievement",
     rarity: "Common",
-    imageUrl: "/achievements/content.png",
+    imageUrl: "📺",
     category: "Platform",
   },
   {
@@ -159,7 +159,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 2,
     badgeType: "Achievement",
     rarity: "Rare",
-    imageUrl: "/achievements/rocket.png",
+    imageUrl: "🚀",
     category: "Rocket League",
   },
   {
@@ -170,7 +170,7 @@ const MOCK_ACHIEVEMENTS = [
     currentProgress: 0,
     badgeType: "Achievement",
     rarity: "Legendary",
-    imageUrl: "/achievements/diamond.png",
+    imageUrl: "💎",
     category: "Platform",
   },
 ];
