@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useScaffoldWriteContract } from "../../hooks/scaffold-eth";
 import { useForm } from "react-hook-form";
+import { useAccount } from "wagmi";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 type ProfileFormData = {
@@ -22,12 +24,23 @@ export const CreateProfileModal = ({ isOpen, onClose }: CreateProfileModalProps)
     handleSubmit,
     formState: { errors },
   } = useForm<ProfileFormData>();
+  const { address: connectedAddress } = useAccount();
+
+  const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("gamersdao");
+
+  const createProfile = async () => {
+    await writeYourContractAsync({
+      functionName: "createUserProfile",
+      args: [connectedAddress],
+    });
+  };
 
   const onSubmit = async (data: ProfileFormData) => {
     try {
       console.log("Form submitted with data:", data);
       // TODO: Contract interaction will go here
       // await createProfile(data);
+      await createProfile();
       onClose();
     } catch (error) {
       console.error("Error creating profile:", error);

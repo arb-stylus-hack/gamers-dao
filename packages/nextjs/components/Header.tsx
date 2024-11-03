@@ -4,7 +4,15 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bars3Icon, BoltIcon, HomeIcon, TrophyIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BoltIcon,
+  ChartBarIcon,
+  ChatBubbleBottomCenterIcon,
+  HomeIcon,
+  TrophyIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -21,6 +29,11 @@ export const menuLinks: HeaderMenuLink[] = [
     icon: <HomeIcon className="h-4 w-4" />,
   },
   {
+    label: "Socialise",
+    href: "/socialise",
+    icon: <ChatBubbleBottomCenterIcon className="h-4 w-4" />,
+  },
+  {
     label: "Achievements",
     href: "/achievements",
     icon: <TrophyIcon className="h-4 w-4" />,
@@ -34,6 +47,11 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Profile",
     href: "/profile",
     icon: <UserIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Roadmap",
+    href: "/roadmap",
+    icon: <ChartBarIcon className="h-4 w-4" />,
   },
 ];
 

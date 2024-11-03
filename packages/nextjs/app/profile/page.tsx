@@ -1,9 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
+
+// Referencing achievement interface from achievements component
+interface Achievement {
+  id: string;
+  name: string;
+  description: string;
+  requiredProgress: number;
+  currentProgress: number;
+  badgeType: string;
+  rarity: string;
+  imageUrl: string;
+  category: string;
+}
+
+interface GameStats {
+  game: string;
+  stats: {
+    label: string;
+    value: string | number;
+  }[];
+}
 
 interface GamingProfile {
   username: string;
@@ -11,14 +33,13 @@ interface GamingProfile {
   gamingAccounts: {
     platform: string;
     accountId: string;
+    verified: boolean;
+    imageUrl: string;
   }[];
-  achievements: {
-    id: string;
-    name: string;
-    description: string;
-    earnedDate: string;
-  }[];
+  achievements: Achievement[];
   reputation: number;
+  gameStats: GameStats[];
+  featuredBadges: Achievement[];
 }
 
 const Profile = () => {
@@ -30,29 +51,74 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         // TODO: Replace with actual contract call
-        // Mocked data for demonstration
         const mockProfile: GamingProfile = {
-          username: "ProGamer123",
+          username: "fac3_m4n",
           bio: "Competitive gamer passionate about FPS and strategy games",
           gamingAccounts: [
-            { platform: "Steam", accountId: "steam123" },
-            { platform: "Epic", accountId: "epic456" },
+            { platform: "Steam", accountId: "steam123", verified: true, imageUrl: "/achievements/steam.png" },
+            { platform: "Epic", accountId: "epic456", verified: false, imageUrl: "/achievements/epic.png" },
+            { platform: "Riot", accountId: "riot123", verified: true, imageUrl: "/achievements/riot.png" },
           ],
           achievements: [
             {
               id: "1",
               name: "Early Adopter",
               description: "One of the first 1000 users on GamersDAO",
-              earnedDate: "2024-03-15",
+              requiredProgress: 1,
+              currentProgress: 1,
+              badgeType: "Platform",
+              rarity: "Legendary",
+              imageUrl: "🦄",
+              category: "Platform",
             },
-            {
-              id: "2",
-              name: "Social Butterfly",
-              description: "Connected 3 gaming accounts",
-              earnedDate: "2024-03-16",
-            },
+            // ... existing achievements
           ],
           reputation: 850,
+          gameStats: [
+            {
+              game: "CS:GO",
+              stats: [
+                { label: "K/D Ratio", value: "1.85" },
+                { label: "Win Rate", value: "58%" },
+                { label: "Headshot %", value: "62%" },
+                { label: "Hours Played", value: 1200 },
+              ],
+            },
+            {
+              game: "Fortnite",
+              stats: [
+                { label: "Victory Royales", value: 150 },
+                { label: "Win Rate", value: "12%" },
+                { label: "K/D Ratio", value: "2.3" },
+                { label: "Matches Played", value: 1500 },
+              ],
+            },
+          ],
+          featuredBadges: [
+            // Featured badges would be a subset of achievements
+            {
+              id: "6",
+              name: "Tournament Victor",
+              description: "Win a GamersDAO tournament",
+              requiredProgress: 1,
+              currentProgress: 1,
+              badgeType: "Achievement",
+              rarity: "Legendary",
+              imageUrl: "🏆",
+              category: "Platform",
+            },
+            {
+              id: "1",
+              name: "Early Adopter",
+              description: "One of the first 1000 users on GamersDAO",
+              requiredProgress: 1,
+              currentProgress: 1,
+              badgeType: "Platform",
+              rarity: "Legendary",
+              imageUrl: "🦄",
+              category: "Platform",
+            },
+          ],
         };
         setProfile(mockProfile);
       } catch (error) {
@@ -111,6 +177,37 @@ const Profile = () => {
         </div>
       </div>
 
+      {/* Featured Badges */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Featured Badges</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {profile?.featuredBadges.map(badge => (
+            <div key={badge.id} className="bg-base-200 rounded-xl p-4 text-center">
+              <div className="text-4xl mb-2">{badge.imageUrl}</div>
+              <h3 className="font-semibold text-sm mb-1">{badge.name}</h3>
+              <span className={`badge badge-sm ${badge.rarity.toLowerCase()}`}>{badge.rarity}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Game Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        {profile?.gameStats.map((gameStat, index) => (
+          <div key={index} className="bg-base-200 rounded-xl p-6">
+            <h2 className="text-2xl font-bold mb-4">{gameStat.game} Stats</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {gameStat.stats.map((stat, statIndex) => (
+                <div key={statIndex} className="bg-base-300 rounded-lg p-4">
+                  <div className="text-sm opacity-70">{stat.label}</div>
+                  <div className="text-xl font-bold">{stat.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Gaming Accounts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <div className="bg-base-200 rounded-xl p-6">
@@ -119,7 +216,9 @@ const Profile = () => {
             {profile.gamingAccounts.map((account, index) => (
               <div key={index} className="flex items-center justify-between p-3 bg-base-300 rounded-lg">
                 <div className="flex items-center gap-3">
-                  <span className="text-xl">{account.platform === "Steam" ? "🎮" : "🎯"}</span>
+                  <span className="text-xl">
+                    <Image src={account.imageUrl} alt={account.platform} width={32} height={32} />
+                  </span>
                   <div>
                     <p className="font-semibold">{account.platform}</p>
                     <p className="text-sm opacity-70">{account.accountId}</p>
@@ -142,7 +241,6 @@ const Profile = () => {
                     <h3 className="font-semibold">{achievement.name}</h3>
                     <p className="text-sm opacity-70">{achievement.description}</p>
                   </div>
-                  <span className="text-sm opacity-70">{new Date(achievement.earnedDate).toLocaleDateString()}</span>
                 </div>
               </div>
             ))}
